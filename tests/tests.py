@@ -8,6 +8,7 @@ class TestPlayers(unittest.TestCase):
         self.player_scissors = Player("Scissors Guy", "scissors")
         self.player_paper = Player("Paper Guy", "paper")
         self.player_rock_2 = Player("Rock Guy Two", "rock")
+        self.player_computer = Player(None, None)
         self.game1 = Game(None)
 
     def test_player_has_name(self):
@@ -37,5 +38,9 @@ class TestPlayers(unittest.TestCase):
         self.assertEqual(None, self.game1.winner)
         self.game1.play_game(self.player_rock, self.player_paper)
         self.assertEqual("Paper Guy", self.game1.winner)
+
+    def test_computer_player_exists(self):
+        self.player_computer.add_computer_player(self)
+        self.assertEqual("Computer", self.player_computer.player_name)
 
    

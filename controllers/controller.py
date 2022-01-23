@@ -1,7 +1,7 @@
 from flask import render_template, request
 from app import app
 from models.players import Player
-from models.players_list import players, play_game
+from models.players_list import players
 from models.game import Game
 
 @app.route("/")
@@ -22,8 +22,13 @@ def rules():
 
 @app.route("/play", methods=["POST"])
 def computer_play():
-    # player_name = request.form["player_name"]
+    player_name = request.form["player_name"]
     player_choice = request.form["player_choice"]
+    player1 = Player(player_name, player_choice)
+    computer = Player(None, None)
+    computer_choice = computer.add_computer_player()
+    game1 = Game(None)
+    winner = game1.play_game(player1, computer_choice)
     # new_player_game = Player(player_name, player_choice)
     # play_game_against_computer(new_player_game.player_choice)
-    return render_template("computer_play.html", welcome_message="howdy", player_choice=player_choice)
+    return render_template("computer_play.html", welcome_message="howdy", player_name=player_name, player_choice=player_choice, game1=game1, computer_name=computer_choice.player_name, computer_choice=computer_choice.choice)
