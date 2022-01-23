@@ -18,4 +18,6 @@ class Game:
             self.winner = playerA.player_name
         elif playerA.choice == "scissors" and playerB.choice == "rock":
             self.winner = playerB.player_name
+        else:
+            self.winner = "bogey"
             return self.winner
