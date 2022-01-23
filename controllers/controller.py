@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request
 from app import app
 from models.players import Player
 from models.players_list import players, play_game
@@ -20,6 +20,10 @@ def play(player1_choice, player2_choice):
 def rules():
     return render_template("rules.html", welcome_message="howdy")
 
-@app.route("/play")
+@app.route("/play", methods=["POST"])
 def computer_play():
-    return render_template("computer_play.html", welcome_message="howdy")
+    # player_name = request.form["player_name"]
+    player_choice = request.form["player_choice"]
+    # new_player_game = Player(player_name, player_choice)
+    # play_game_against_computer(new_player_game.player_choice)
+    return render_template("computer_play.html", welcome_message="howdy", player_choice=player_choice)
