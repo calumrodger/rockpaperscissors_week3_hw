@@ -19,3 +19,7 @@ def play(player1_choice, player2_choice):
 @app.route("/rules")
 def rules():
     return render_template("rules.html", welcome_message="howdy")
+
+@app.route("/play")
+def computer_play():
+    return render_template("computer_play.html", welcome_message="howdy")
